@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculate block</title>
+  <link rel="stylesheet" href="./css/index.css">
+</head>
+<body>
+  
+<div class="kit">
+  <div class="container">
+
+    <p class="kit__title">Ваш комплект для беспроводного интернета:</p>
+
+    <div class="kit__content">
+
+      <div class="kit__items-line">
+
+        <div class="kit__item kit-item">
+
+          <div class="kit-item__img">
+            <img src="./img/con_router2.png" alt="Router">
+          </div>
+
+          <div class="kit-item__content">
+
+            <p class="kit-item__name">Роутер</p>
+            <p class="kit-item__price">2500 руб.</p>
+
+            <form class="kit-item__options">
+
+              <label>
+                <input type="radio" name="router" value="withoutrouter" checked>
+                <span>Без роутера</span>
+              </label>
+
+              <label>
+                <input type="radio" name="router" value="standartrouter">
+                <span>Стандартный</span>
+              </label>
+
+              <label>
+                <input type="radio" name="router" value="powerrouter">
+                <span>Мощный</span>
+              </label>
+
+            </form>
+          </div>
+        </div>
+
+        <div class="kit__item kit-item">
+
+          <div class="kit-item__img">
+            <img src="./img/con_antenna4.png" alt="Antenna">
+          </div>
+
+          <div class="kit-item__content">
+
+            <p class="kit-item__name">Антенна MIMO</p>
+            <p class="kit-item__price">2500 руб.</p>
+
+            <form class="kit-item__options">
+
+              <label>
+                <input type="radio" name="router" value="12db" checked>
+                <span>12 ДБ</span>
+              </label>
+
+              <label>
+                <input type="radio" name="router" value="20db">
+                <span>20 ДБ</span>
+              </label>
+
+              <label>
+                <input type="radio" name="router" value="27db">
+                <span>27 ДБ</span>
+              </label>
+
+            </form>
+          </div>
+        </div>
+
+        <div class="kit__item kit-item">
+
+          <div class="kit-item__img">
+            <img src="./img/con_sim.png" alt="Sim">
+          </div>
+
+          <div class="kit-item__content">
+
+            <p class="kit-item__name">Безлимитный тариф</p>
+            <p class="kit-item__price">Бесплатно</p>
+            <p class="kit-item__description">Единый тариф с полным безлимитом 400 руб./мес.</p>
+            <div class="kit-item__operators">
+              <img src="./img/megafon2.svg" width="21" alt="megafon">
+              <img src="./img/mts2.svg" width="19" alt="mts">
+              <img src="./img/tele22.svg" width="14" alt="tele2">
+              <img src="./img/beeline2.svg" width="18" alt="beeline">
+            </div>
+
+          </div>
+        </div>
+
+        <div class="kit__item kit-item">
+
+          <div class="kit-item__img">
+            <img src="./img/con_modem.png" alt="Modem">
+          </div>
+
+          <div class="kit-item__content">
+
+            <p class="kit-item__name">Модем</p>
+            <p class="kit-item__price">4500 руб.</p>
+            <p class="kit-item__description">Универсальный 4G USB-модем, можно использовать с любым оператором</p>
+
+          </div>
+        </div>
+
+        <div class="kit__item kit-item kit-item_short">
+
+          <div class="kit-item__img">
+            <img src="./img/con_pigtail.png" alt="Pigtail">
+          </div>
+
+          <div class="kit-item__content">
+            <p class="kit-item__name">Модем</p>
+            <p class="kit-item__price">1500 руб.</p>
+          </div>
+        </div>
+
+        <div class="kit__item kit-item kit-item_short">
+
+          <div class="kit-item__img">
+            <img src="./img/con_bracket.png" alt="Pigtail">
+          </div>
+
+          <div class="kit-item__content">
+            <p class="kit-item__name">Кабель</p>
+            <p class="kit-item__price">Бесплатно до 30м</p>
+          </div>
+        </div>
+
+        <div class="kit__item kit-item">
+
+          <div class="kit-item__img">
+            <img src="./img/con_installation.png" alt="Drill">
+          </div>
+
+          <div class="kit-item__content">
+
+            <p class="kit-item__name">Установка и тестирование</p>
+            <p class="kit-item__price">5500 руб.</p>
+            <p class="kit-item__description">Выезд, замер сигнала, подбор оборудования, монтаж и тестирование работы</p>
+
+          </div>
+        </div>
+
+      </div>
+
+      <div class="kit__side-panel">
+
+        <div class="kit__cost cost-block">
+          <p class="cost-block__result">17500 руб.</p>
+          <button class="cost-block__btn" onclick="console.log('pressed!')">заказать этот комплект</button>
+        </div>
+
+        <div class="kit__advice advice-block">
+          <p class="advice-block__title">Не знаете, что выбрать?</p>
+          <button class="advice-block__btn">Получить консультацию</button>
+          <p class="advice-block__action">Или позвоните нам по телефону:</p>
+          <a href="tel:900000000" class="advice-block__tel">+7 (499) 113-17-00</a>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+  <script src="./js/main.js"></script>
+</body>
+</html>
