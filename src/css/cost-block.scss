@@ -1,0 +1,52 @@
+.cost-block {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    align-content: center;
+    max-width: 210px;
+
+    &__result {
+        margin: 0 0 0;
+        font-size: 39px;
+        font-weight: 600;
+    }
+
+    &__btn {
+        width: 212px;
+        height: 50px;
+        margin-top: 10px;
+        padding: 0 25px;
+        background-color: #3f7fc7;
+        font-family: 'avenir';
+        color: #fff;
+        font-size: 11px;
+        font-weight: 600;
+        text-transform: uppercase;
+        border: none;
+        border-radius: 6px;
+        transition: all 0.4s ease;
+    }
+
+    &__btn:hover {
+        cursor: pointer;
+        background-color: #1259aa;
+    }
+
+    &__btn:focus {
+        outline: none;
+        background-color: #80b8fc;
+    }
+}
+
+@media screen and (max-width:576px) {
+    .cost-block {
+        margin: 0 auto 30px;
+
+        &__result {
+            width: 100%;
+            text-align: center;
+            font-size: 30px;
+            font-weight: 600;
+        }
+    }
+}

@@ -1,0 +1,68 @@
+.advice-block {
+    width: 260px;
+    margin: 60px 0 0;
+    padding-left: 30px;
+
+    &__title {
+        font-size: 20px;
+        font-weight: 600;
+    }
+
+    &__btn {
+        width: 212px;
+        height: 50px;
+        padding: 0 25px;
+        background-color: #ffffff00;
+        font-family: 'avenir';
+        color: #3f7fc7;
+        font-size: 11px;
+        font-weight: bold;
+        text-transform: uppercase;
+        border: 1px solid #3f7fc7;
+        border-radius: 6px;
+        transition: all 0.4s ease;
+    }
+
+    &__btn:hover {
+        cursor: pointer;
+        background-color: #1259aa;
+        color: #fff;
+    }
+
+    &__btn:focus {
+        outline: none;
+        background-color: #a1c5f1;
+    }
+
+    &__action {
+        font-size: 13px;
+        line-height: 22px;
+    }
+
+    &__tel {
+        font-weight: 600;
+        color: #3f7fc7;
+    }
+
+    &__tel:hover {
+        color: #000000;
+    }
+}
+
+
+@media screen and (max-width:1100px) {
+    .advice-block {
+        width: 260px;
+        margin: 0 60px 0 0;
+        padding-left: 30px;
+    }
+}
+
+
+@media screen and (max-width:576px) {
+    .advice-block {
+        margin: 0 auto 0;
+        padding: 0 10px;
+        text-align: center;
+    }
+}

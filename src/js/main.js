@@ -1,5 +1,6 @@
 $(document).ready(function() {
-    
+
+
     class Calculator {
         constructor() {
             this.$el = $('[data-application="calculator"]');
@@ -196,8 +197,6 @@ $(document).ready(function() {
             this.$el.attr('data-result-price-calculator', value);
         }
     }
-
-
 
 
 

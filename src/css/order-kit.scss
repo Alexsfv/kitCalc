@@ -1,0 +1,142 @@
+@import "close-btn.scss";
+
+.order-kit {
+    position: fixed;
+    z-index: 1000;
+    background-color: rgba(104, 104, 104, 0.575);
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    font-family: sans-serif, Arial;
+
+    &__wrapper {
+        position: absolute;
+        max-width: 600px;
+        max-height: 95vh;
+        width: 100%;
+        margin: 0px auto;
+        padding: 15px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #fff;
+        border-radius: 5px;
+        overflow-y: scroll;
+    }
+
+    &__title {
+        width: 100%;
+        margin-top: 30px;
+        text-align: center;
+    }
+
+    &__close-btn {
+        position: absolute;
+        right: 15px;
+    }
+
+    &__form {
+        margin: 0 auto;
+        max-width: 340px;
+        text-align: right;
+    }
+
+    &__form-text {
+        display: block;
+        width: 100%;
+        height: 36px;
+        margin: 30px auto;
+        padding: 0 10px;
+        border: 2px solid rgba(0, 178, 209, 0.7);
+        border-radius: 3px;
+    }
+
+    &__form-text:focus {
+        outline: none;
+        border-color:  #0063f7;
+    }
+
+    &__form-text::placeholder {
+        font-family: Arial, sans-serif;
+        font-size: 14px;
+        color: #646464;
+    }
+
+    &__form-submit {
+        display: inline-block;
+        max-width: 400px;
+        height: 36px;
+        margin: 0px auto 20px;
+        padding: 0 15px;
+        background-color: rgba(0, 217, 255, 0.377);
+        border: none;
+        border-radius: 5px;
+        transition: all 0.3s ease;
+
+        font-family: Arial, sans-serif;
+        font-weight: bold;
+    }
+
+    &__form-submit:hover {
+        cursor: pointer;
+        background-color: rgba(0, 217, 255, 0.85);
+    }
+
+    &__form-submit:focus {
+        outline: none;
+        background-color: rgba(0, 217, 255, 0.6);
+    }
+
+    &__services {
+        max-width: 560px;
+        width: 100%;
+        margin: 20px auto 10px;
+        border: 1px solid black;
+        border-collapse: collapse;
+
+        td, th {
+            border: 1px solid black;
+            padding: 5px 8px;
+        }
+    }
+
+    &__services-title {
+        margin: 0 0 15px;
+        text-align: center;
+        font-weight: bold;
+        color: #0899bd;
+    }
+
+    &__services-body {
+        tr:nth-child(2n) {
+            background-color: rgba(206, 206, 206, 0.493);
+           }
+    }
+
+    &__services-price {
+        text-align: center;
+    }
+
+    &__services-result {
+        background-color: rgba(0, 109, 252, 0.473);
+        text-align: right;
+    }
+}
+
+.align-right {
+    text-align: right;
+}
+
+.align-center {
+    text-align: center;
+}
+
+@media screen and (max-width:768px) {
+    .order-kit {
+   
+        &__wrapper {
+            max-width: 90%;
+        }
+    }
+}
