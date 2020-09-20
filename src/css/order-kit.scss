@@ -1,6 +1,7 @@
 @import "close-btn.scss";
 
 .order-kit {
+    display: none;
     position: fixed;
     z-index: 1000;
     background-color: rgba(104, 104, 104, 0.575);
@@ -9,6 +10,10 @@
     left: 0;
     right: 0;
     font-family: sans-serif, Arial;
+
+    &.open {
+        display: block;
+    }
 
     &__wrapper {
         position: absolute;
@@ -22,7 +27,7 @@
         transform: translate(-50%, -50%);
         background-color: #fff;
         border-radius: 5px;
-        overflow-y: scroll;
+        overflow-y: auto;
     }
 
     &__title {
@@ -121,6 +126,7 @@
     &__services-result {
         background-color: rgba(0, 109, 252, 0.473);
         text-align: right;
+        font-weight: bold;
     }
 }
 

@@ -1,5 +1,22 @@
 $(document).ready(function() {
 
+    class EventListener {
+        constructor(listeners = [], $el) {
+            this.listeners = listeners;
+            this.addListeners($el);
+        }
+
+        addListeners($el) {
+            this.listeners.forEach((listener) => {
+                const methodName = this.getOn(listener);
+                $el.on(listener, this[methodName].bind(this))
+            })
+        }
+
+        getOn(eventName) {
+            return 'on' + eventName[0].toUpperCase() + eventName.slice(1)
+        }
+    }
 
     class Calculator {
         constructor() {
@@ -17,19 +34,26 @@ $(document).ready(function() {
             this.components.set('pigtail', new Pigtail());
             this.components.set('cable', new Cable());
             this.components.set('install', new Install());
+            this.components.set('order', new OrderModal());
 
             this.components.set('finalPrice', new FinalPrice());
+            this.components.set('oreder-btn', new OrderBtn());
+        }
+
+        getPrice(elemName) {
+            return +this.components.get(elemName).
+            $priceDisplay.attr('data-price-display');
         }
 
         updateFinalPrice() {
             let resultPrice = 0;
             for (let el of this.components.values()) {
-                if (el.$priceDisplay) {
+                const isFinalPrice = el.$el.attr('data-calculate-component') === "finalPrice";
+                if (el.$priceDisplay && !isFinalPrice) {
                     const elementPrice = +el.$priceDisplay.attr('data-price-display');
                     resultPrice += elementPrice;
                 }
             }
-            let a = this.components.get('finalPrice')
             this.components.get('finalPrice').updatePrice(resultPrice);
         }
 
@@ -89,7 +113,6 @@ $(document).ready(function() {
         }
 
         setOption(option) {
-            console.log('sss');
             this.$priceDisplay.text(`${option.price} руб.`);
             this.$priceDisplay.attr('data-price-display', option.price);
             this.updateImage(option.imgSrc);
@@ -189,14 +212,114 @@ $(document).ready(function() {
     class FinalPrice {
         constructor() {
             this.$el = $('[data-calculate-component="finalPrice"]');
-
+            this.$priceDisplay = this.$el;
         }
 
-        updatePrice(value=100) {
+        updatePrice(value = 100) {
             this.$el.text(value + ' руб.');
-            this.$el.attr('data-result-price-calculator', value);
+            this.$el.attr('data-price-display', value);
         }
     }
+
+    class OrderModal extends EventListener{
+        constructor() {
+            const listeners = ['click'];
+            const $el = $('[data-application="modal-order"]');
+            super(listeners, $el);
+            this.$el = $el;
+            this.initComponents();
+        }
+
+        initComponents() {
+            this.initBody();
+            this.initCloseBtn();
+            this.initTable();
+        }
+
+        initBody() {
+            this.$body = $('[data-order-component="body"]');
+            this.$body.on('click', (e) => {
+                e.stopPropagation();
+            })
+        }
+
+        initCloseBtn() {
+            this.$closeBtn = $('[data-order-component="close-btn"]');
+            this.$closeBtn.on('click', (e) => {
+                const order = calculator.components.get('order');
+                order.hide();
+            })
+        }
+
+        initTable() {
+            this.$table = $('[data-order-component="table"]');
+        }
+
+        updateTable() {
+
+            const routerPrice = calculator.getPrice('router');
+            const antennaPrice = calculator.getPrice('antenna');
+            const tariffPrice = calculator.getPrice('tariff');
+            const modemPrice = calculator.getPrice('modem');
+            const pigtailPrice = calculator.getPrice('pigtail');
+            const cablePrice = calculator.getPrice('cable');
+            const installPrice = calculator.getPrice('install');
+            const finalPrice = calculator.getPrice('finalPrice');
+            // debugger
+            this.$table.find('[data-order-component="table-router"]')
+                .text(`${routerPrice} руб.`);
+            this.$table.find('[data-order-component="table-antenna"]')
+                .text(`${antennaPrice} руб.`);
+            this.$table.find('[data-order-component="table-tariff"]')
+                .text(`${tariffPrice} руб.`);
+            this.$table.find('[data-order-component="table-modem"]')
+                .text(`${modemPrice} руб.`);
+            this.$table.find('[data-order-component="table-pigtail"]')
+                .text(`${pigtailPrice} руб.`);
+            this.$table.find('[data-order-component="table-cable"]')
+                .text(`${cablePrice} руб.`);
+            this.$table.find('[data-order-component="table-install"]')
+                .text(`${installPrice} руб.`);
+            this.$table.find('[data-order-component="table-finalPrice"]')
+                .text(`${finalPrice} руб.`);
+
+            // this.components.set('install', new Install());
+            // this.components.set('order', new OrderModal());
+
+            // this.components.set('finalPrice', new FinalPrice());
+
+
+        }
+
+        onClick() {
+            this.hide();
+        }
+
+        show() {
+            this.updateTable();
+            this.$el.addClass('open');
+        }
+
+        hide() {
+            this.$el.removeClass('open');
+        }
+    }
+
+    class OrderBtn extends EventListener {
+        constructor() {
+            const listeners = ['click'];
+            const $el = $('[data-calculate-component="oreder-btn"]');
+            super(listeners, $el);
+            this.$el = $el;
+        }
+
+        onClick() {
+            const order = calculator.components.get('order');
+            order.show();
+        }
+    }
+
+    
 
 
 

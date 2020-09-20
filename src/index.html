@@ -161,8 +161,8 @@
       <div class="kit__side-panel">
 
         <div class="kit__cost cost-block">
-          <p class="cost-block__result"  data-calculate-component="finalPrice" data-result-price-calculator=""></p>
-          <button class="cost-block__btn" onclick="console.log('pressed!')">заказать этот комплект</button>
+          <p class="cost-block__result"  data-calculate-component="finalPrice" data-price-display=""></p>
+          <button class="cost-block__btn" data-calculate-component="oreder-btn">заказать этот комплект</button>
         </div>
 
         <div class="kit__advice advice-block">
@@ -179,11 +179,11 @@
   </div>
 </div>
 
-<div class="order-kit">
+<div class="order-kit" data-application="modal-order">
   <div class="container">
 
-    <div class="order-kit__wrapper">
-      <button class="close-btn order-kit__close-btn"></button>
+    <div class="order-kit__wrapper" data-order-component="body">
+      <button class="close-btn order-kit__close-btn" data-order-component="close-btn"></button>
 
       <h2 class="order-kit__title">Заказ</h2>
 
@@ -193,7 +193,7 @@
         <input type="submit" value="Отправить заказ" class="order-kit__form-submit">
       </form>
 
-      <table class="order-kit__services" cellpadding="0">
+      <table class="order-kit__services" cellpadding="0" data-order-component="table">
         <caption class="order-kit__services-title">Выбранные услуги</caption>
 
         <thead>
@@ -206,44 +206,44 @@
         <tbody class="order-kit__services-body">
           <tr>
             <td>Роутер</td>
-            <td class="order-kit__services-price">4564 руб.</td>
+            <td class="order-kit__services-price" data-order-component="table-router">4564 руб.</td>
           </tr>
 
           <tr>
             <td>Антенна</td>
-            <td class="order-kit__services-price">9999 руб.</td>
+            <td class="order-kit__services-price" data-order-component="table-antenna">9999 руб.</td>
           </tr>
 
           <tr>
             <td>Безлимитный тариф</td>
-            <td class="order-kit__services-price">0 руб.</td>
+            <td class="order-kit__services-price" data-order-component="table-tariff">0 руб.</td>
           </tr>
 
           <tr>
             <td>Модем</td>
-            <td class="order-kit__services-price">4404 руб.</td>
+            <td class="order-kit__services-price" data-order-component="table-modem">4404 руб.</td>
           </tr>
 
           <tr>
             <td>Пигтейлы</td>
-            <td class="order-kit__services-price">1111 руб.</td>
+            <td class="order-kit__services-price"  data-order-component="table-pigtail">1111 руб.</td>
           </tr>
 
           <tr>
             <td>Кабель</td>
-            <td class="order-kit__services-price">0 руб.</td>
+            <td class="order-kit__services-price" data-order-component="table-cabel">0 руб.</td>
           </tr>
 
           <tr>
             <td>Установка и тестирование</td>
-            <td class="order-kit__services-price">250044 руб.</td>
+            <td class="order-kit__services-price"  data-order-component="table-install">250044 руб.</td>
           </tr>
         </tbody>
 
         <tfoot>
           <tr>
             <td class="order-kit__services-result">Итого</td>
-            <td class="order-kit__services-result">15000 руб.</td>
+            <td class="order-kit__services-result"  data-order-component="table-finalPrice">15000 руб.</td>
           </tr>
         </tfoot>
 
