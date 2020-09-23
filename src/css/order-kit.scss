@@ -1,6 +1,7 @@
 @import "close-btn.scss";
 
 .order-kit {
+    display: none;
     position: fixed;
     z-index: 1000;
     background-color: rgba(104, 104, 104, 0.575);
@@ -9,6 +10,10 @@
     left: 0;
     right: 0;
     font-family: sans-serif, Arial;
+
+    &.open {
+        display: block;
+    }
 
     &__wrapper {
         position: absolute;
@@ -22,7 +27,7 @@
         transform: translate(-50%, -50%);
         background-color: #fff;
         border-radius: 5px;
-        overflow-y: scroll;
+        overflow-y: auto;
     }
 
     &__title {
@@ -37,6 +42,7 @@
     }
 
     &__form {
+        position: relative;
         margin: 0 auto;
         max-width: 340px;
         text-align: right;
@@ -65,8 +71,8 @@
 
     &__form-submit {
         display: inline-block;
-        max-width: 400px;
-        height: 36px;
+        max-width: 280px;
+        min-height: 36px;
         margin: 0px auto 20px;
         padding: 0 15px;
         background-color: rgba(0, 217, 255, 0.377);
@@ -121,7 +127,27 @@
     &__services-result {
         background-color: rgba(0, 109, 252, 0.473);
         text-align: right;
+        font-weight: bold;
     }
+    
+    &__form-thanks, &__form-error {
+        display: none;
+        margin: 12px 10px;
+        font-size: 14px;
+
+        &.active {
+            display: inline-block;
+        }
+    }
+
+    &__form-thanks {
+        color: green;
+    }
+
+    &__form-error {
+        color: red;
+    }
+
 }
 
 .align-right {
@@ -130,6 +156,10 @@
 
 .align-center {
     text-align: center;
+}
+
+.notValid {
+    border-color: red;
 }
 
 @media screen and (max-width:768px) {
