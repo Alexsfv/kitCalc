@@ -187,10 +187,18 @@
 
       <h2 class="order-kit__title">Заказ</h2>
 
-      <form class="order-kit__form">
-        <input type="text" placeholder="Ваше имя" class="order-kit__form-text" required>
-        <input type="text"placeholder="Ваш телефон" class="order-kit__form-text" required>
-        <input type="submit" value="Отправить заказ" class="order-kit__form-submit">
+      <form class="order-kit__form" data-order-component="form">
+        <input type="text" name="name" placeholder="Ваше имя" class="order-kit__form-text" data-order-component="name-field" required>
+
+        <input type="text" name="phone" placeholder="Ваш телефон" class="order-kit__form-text" data-order-component="phone-field" required>
+        
+        <p class="order-kit__form-thanks" data-order-component="thanks-form">Спасибо! Заявка принята</p>
+
+        <p class="order-kit__form-error" data-order-component="error-form">Ошибка отправки. Пожалуйста свяжитесь с нами по телефону</p>
+        
+        <input type="submit" value="Отправить заказ" class="order-kit__form-submit" data-order-component="btn-field">
+      
+        
       </form>
 
       <table class="order-kit__services" cellpadding="0" data-order-component="table">

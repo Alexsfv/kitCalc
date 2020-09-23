@@ -38,6 +38,7 @@ $(document).ready(function() {
 
             this.components.set('finalPrice', new FinalPrice());
             this.components.set('oreder-btn', new OrderBtn());
+            this.components.set('oreder-form', new OrderForm());
         }
 
         getPrice(elemName) {
@@ -65,7 +66,6 @@ $(document).ready(function() {
             antenna.setByDefault(antenna.options.weak);
         }
     }
-
 
     class Router {
         constructor() {
@@ -256,7 +256,6 @@ $(document).ready(function() {
         }
 
         updateTable() {
-
             const routerPrice = calculator.getPrice('router');
             const antennaPrice = calculator.getPrice('antenna');
             const tariffPrice = calculator.getPrice('tariff');
@@ -265,7 +264,7 @@ $(document).ready(function() {
             const cablePrice = calculator.getPrice('cable');
             const installPrice = calculator.getPrice('install');
             const finalPrice = calculator.getPrice('finalPrice');
-            // debugger
+
             this.$table.find('[data-order-component="table-router"]')
                 .text(`${routerPrice} руб.`);
             this.$table.find('[data-order-component="table-antenna"]')
@@ -282,13 +281,6 @@ $(document).ready(function() {
                 .text(`${installPrice} руб.`);
             this.$table.find('[data-order-component="table-finalPrice"]')
                 .text(`${finalPrice} руб.`);
-
-            // this.components.set('install', new Install());
-            // this.components.set('order', new OrderModal());
-
-            // this.components.set('finalPrice', new FinalPrice());
-
-
         }
 
         onClick() {
@@ -319,9 +311,119 @@ $(document).ready(function() {
         }
     }
 
-    
+    class OrderForm extends EventListener {
+        constructor() {
+            const listeners = ['submit'];
+            const $el = $('[data-order-component="form"]');
+            super(listeners, $el);
+            this.$el = $el;
+            this.initComponents();
+        }
+        
+        initComponents() {
+            this.$nameField = $('[data-order-component="name-field"]');
+            this.$phoneField = $('[data-order-component="phone-field"]');
+            this.$submitBtn = $('[data-order-component="btn-field"]');
+            this.$thanksMsg = $('[data-order-component="thanks-form"]');
+            this.$errorMsg = $('[data-order-component="error-form"]');
 
+            this.$nameField.on('input', () => {
+                this.deleteMark(this.$nameField);
+            });
 
+            this.$phoneField.on('input', () => {
+                this.deleteMark(this.$phoneField);
+            });
+        }
+
+        onSubmit(event) {
+            event.preventDefault();
+            this.handlerForm();
+        }
+        
+        handlerForm() {
+            const phone = this.getValidPhone();
+            const name = this.getValidName();
+
+            const isValidPhone = phone.length > 0;
+            const isValidName = name.length > 0;
+            
+            if (!isValidPhone) {
+                this.markError(this.$phoneField);
+                this.$submitBtn.attr('disabled', true);
+            }
+            
+            if (!isValidName) {
+                this.markError(this.$nameField);
+                this.$submitBtn.attr('disabled', true);
+            }
+
+            if (isValidName && isValidPhone) {
+                ajax(this.$el, 
+                    this.successSend.bind(this),
+                    this.errorSend.bind(this));
+            }
+        }
+
+        getValidPhone() {
+            const phone = this.$phoneField.val().match(/^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/);
+            return (phone === null || phone.length == 0) ? '' : phone[0];
+        }
+
+        getValidName() {
+            const name = this.$nameField.val().match(/^[_a-zA-Zа-яА-Я ]+$/);
+            return (name === null || name.length == 0) ? '' : name[0];
+        }
+
+        markError($field) {
+            $field.addClass('notValid');
+        }
+
+        deleteMark($field) {
+            $field.removeClass('notValid');
+            this.$submitBtn.attr('disabled', false);
+        }
+
+        successSend() {
+            this.clearForm();
+            this.showThanks();
+            this.$submitBtn.attr('disabled', true);
+        }
+
+        errorSend() {
+            this.showError();
+            this.$submitBtn.attr('disabled', true);
+        }
+
+        showThanks() {
+            this.$thanksMsg.addClass('active');
+        }
+
+        showError() {
+            this.$errorMsg.addClass('active');
+        }
+
+        clearForm() {
+            this.$nameField.val('');
+            this.$phoneField.val('');
+        }
+    }
+
+    function ajax($form, success, error) {
+        const data = $form.serialize();
+        $.ajax({
+            url: './php/mail.php',
+            method: 'POST',
+            data,
+            complete: function(data) {
+                if (data.responseText === '1') {
+                    success();
+                } else {
+                    error();
+                }
+            }
+        }) 
+    }
 
     const calculator = new Calculator();
     calculator.setDefaultOption();
